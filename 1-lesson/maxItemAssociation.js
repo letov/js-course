@@ -4,16 +4,16 @@ function maxItemAssociation(history) {
     let i = 0;
     while (i < history.length) {
         let j = i + 1;
-        let currentRecomendationList = history[i];
+        let concatList = history[i];
         while (j < history.length) {
-            let diff = listDiff(history[i], history[j]);
-            if (diff.length > 0) {
-                currentRecomendationList = currentRecomendationList.concat(history[j]);
-                currentRecomendationList = [...new Set(currentRecomendationList)].sort();
+            let intersection = listDiff(history[i], history[j]);
+            if (intersection.length > 0) {
+                concatList = concatList.concat(history[j]);
+                concatList = [...new Set(concatList)].sort();
             }
             j++;
         }
-        result = result.length > currentRecomendationList.length ? result : currentRecomendationList;
+        result = result.length > concatList.length ? result : concatList;
         i++;
     }
     return result;
