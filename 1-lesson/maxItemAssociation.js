@@ -13,7 +13,14 @@ function maxItemAssociation(history) {
             }
             j++;
         }
-        result = result.length > concatList.length ? result : concatList;
+        if (concatList.length > 0) {
+            let isLengthEq = concatList.length === result.length;
+            let isConcatListLengthMore = concatList.length > result.length;
+            let isConcatListLexicalFirst = concatList[0] < result[0];
+            if (isConcatListLengthMore || (isLengthEq && isConcatListLexicalFirst)) {
+                result = concatList;
+            }
+        }
         i++;
     }
     return result;
