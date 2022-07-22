@@ -4,5 +4,5 @@ export async function promiseReduce(asyncFunctions, reduce, initialValue) {
         const fnRes = await asyncFunctions[key]();
         acc = reduce(acc, fnRes)
     }
-    return Promise.resolve(acc);
+    return acc;
 }
