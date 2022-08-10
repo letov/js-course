@@ -18,8 +18,8 @@ const getData = async (path) => {
         if (fs.lstatSync(fullPath).isDirectory()) {
             data.dirs.push(value)
             const subData = await getData(fullPath)
-            data.dirs = data.dirs.concat(subData.dirs)
-            data.files = data.files.concat(subData.files)
+            data.dirs.push(...subData.dirs)
+            data.files.push(...subData.files)
         } else {
             data.files.push(value)
         }
